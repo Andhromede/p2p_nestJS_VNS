@@ -21,9 +21,13 @@ export class Chapter {
     @Column({ default: true })
     isActive: boolean;
 
-    @ManyToMany(() => Tag)
-    @JoinTable({ name: "chapter_tag" })
-    tags: Tag[];
+    // @ManyToMany(() => Tag)
+    // @JoinTable({ name: "chapter_tag" })
+    // tags: Tag[];
+
+    @ManyToMany(() => Tag, (tag) => tag.chapters)
+    @JoinTable({ name: "tag_chapter" })
+    tags: Tag[]
 
     @ManyToMany(() => Lesson, (lesson) => lesson.chapters)
     @JoinTable({ name: "chapter_lesson" })

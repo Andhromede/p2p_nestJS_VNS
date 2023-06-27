@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany  } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany  } from 'typeorm';
 import { Training } from './training.entity';
+import { Chapter} from './chapter.entity';
 
 
 @Entity()
@@ -16,4 +17,7 @@ export class Tag {
     
     @OneToMany(() => Training, (training => training.tag))
     trainings: Training[];
+
+    @ManyToMany(() => Chapter, (chapter) => chapter.tags)
+    chapters: Chapter[]
 }
